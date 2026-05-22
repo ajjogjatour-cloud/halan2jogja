@@ -1,0 +1,906 @@
+<!-- =========================================================
+PROJECT : JOGJA TRIP LANDING PAGE
+VERSION : V1 ANDROID-FIRST
+TECH    : HTML + CSS + JS
+AUTHOR  : ChatGPT Architecture Build
+========================================================= -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogja Trip Transport</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ==========================================
+       RESET
+    ========================================== */
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0B0B0B;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    /* ==========================================
+       ROOT
+    ========================================== */
+
+    :root{
+      --dark:#0B0B0B;
+      --dark2:#111111;
+      --white:#ffffff;
+      --gold:#D6B25E;
+      --green:#25D366;
+      --soft:#F4F4F4;
+      --gray:#AFAFAF;
+
+      --radius:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    /* ==========================================
+       CONTAINER
+    ========================================== */
+
+    .container{
+      width:100%;
+      max-width:430px;
+      margin:auto;
+      position:relative;
+      background:var(--dark);
+    }
+
+    section{
+      padding:28px 20px;
+    }
+
+    .section-title{
+      font-family:'Poppins',sans-serif;
+      font-size:28px;
+      line-height:1.3;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .section-sub{
+      color:#cfcfcf;
+      font-size:15px;
+      line-height:1.7;
+      margin-bottom:24px;
+    }
+
+    /* ==========================================
+       NAVBAR
+    ========================================== */
+
+    .navbar{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:99;
+      padding:22px 20px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      font-family:'Poppins',sans-serif;
+      font-size:20px;
+      font-weight:700;
+      color:white;
+    }
+
+    .menu-btn{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      background:rgba(255,255,255,.15);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter:blur(10px);
+    }
+
+    .menu-btn span{
+      font-size:22px;
+    }
+
+    /* ==========================================
+       HERO
+    ========================================== */
+
+    .hero{
+      position:relative;
+      height:92vh;
+      overflow:hidden;
+    }
+
+    .hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(
+      to top,
+      rgba(0,0,0,.85),
+      rgba(0,0,0,.2)
+      );
+    }
+
+    .hero-content{
+      position:absolute;
+      bottom:40px;
+      left:20px;
+      right:20px;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      background:rgba(255,255,255,.12);
+      padding:10px 14px;
+      border-radius:50px;
+
+      backdrop-filter:blur(10px);
+
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .hero-title{
+      font-family:'Poppins',sans-serif;
+      font-size:38px;
+      line-height:1.2;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .hero-desc{
+      font-size:15px;
+      line-height:1.8;
+      color:#f0f0f0;
+      margin-bottom:28px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+    }
+
+    .btn{
+      height:52px;
+      border-radius:18px;
+      padding:0 22px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .btn-primary{
+      background:var(--green);
+      color:white;
+      flex:1;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.12);
+      backdrop-filter:blur(10px);
+      color:white;
+      flex:1;
+    }
+
+    /* ==========================================
+       TRUST
+    ========================================== */
+
+    .trust-wrapper{
+      display:flex;
+      overflow-x:auto;
+      gap:14px;
+      padding-bottom:6px;
+    }
+
+    .trust-wrapper::-webkit-scrollbar{
+      display:none;
+    }
+
+    .trust-card{
+      min-width:160px;
+      background:#171717;
+      border-radius:22px;
+      padding:20px;
+    }
+
+    .trust-icon{
+      width:50px;
+      height:50px;
+      border-radius:16px;
+      background:rgba(214,178,94,.15);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:24px;
+      margin-bottom:14px;
+    }
+
+    .trust-card h3{
+      font-size:16px;
+      margin-bottom:8px;
+    }
+
+    .trust-card p{
+      font-size:13px;
+      line-height:1.7;
+      color:#c9c9c9;
+    }
+
+    /* ==========================================
+       ARMADA
+    ========================================== */
+
+    .armada-scroll{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      padding-bottom:6px;
+    }
+
+    .armada-scroll::-webkit-scrollbar{
+      display:none;
+    }
+
+    .armada-card{
+      min-width:300px;
+      background:#171717;
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .armada-image{
+      height:220px;
+      overflow:hidden;
+    }
+
+    .armada-image img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .armada-content{
+      padding:20px;
+    }
+
+    .armada-content h3{
+      font-size:22px;
+      margin-bottom:8px;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .armada-info{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .info-chip{
+      background:#232323;
+      padding:8px 12px;
+      border-radius:50px;
+      font-size:12px;
+      color:#ddd;
+    }
+
+    .price{
+      color:var(--gold);
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    /* ==========================================
+       PACKAGE
+    ========================================== */
+
+    .package-wrapper{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .package-card{
+      background:#171717;
+      border-radius:26px;
+      overflow:hidden;
+    }
+
+    .package-image{
+      height:220px;
+    }
+
+    .package-image img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .package-content{
+      padding:22px;
+    }
+
+    .package-content h3{
+      font-size:22px;
+      margin-bottom:10px;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .package-content p{
+      font-size:14px;
+      line-height:1.8;
+      color:#cfcfcf;
+      margin-bottom:18px;
+    }
+
+    /* ==========================================
+       GALLERY
+    ========================================== */
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .gallery-item{
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .gallery-item img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .gallery-item.big{
+      grid-row:span 2;
+    }
+
+    /* ==========================================
+       TESTIMONIAL
+    ========================================== */
+
+    .testimonial-scroll{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      padding-bottom:6px;
+    }
+
+    .testimonial-scroll::-webkit-scrollbar{
+      display:none;
+    }
+
+    .testimonial-card{
+      min-width:310px;
+      background:white;
+      color:black;
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .testimonial-card h4{
+      margin-bottom:10px;
+      font-size:18px;
+    }
+
+    .testimonial-card p{
+      line-height:1.8;
+      font-size:14px;
+      color:#555;
+    }
+
+    /* ==========================================
+       FAQ
+    ========================================== */
+
+    .faq-wrapper{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .faq-item{
+      background:#171717;
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .faq-question{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:600;
+    }
+
+    .faq-answer{
+      margin-top:14px;
+      color:#cfcfcf;
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    /* ==========================================
+       CTA FINAL
+    ========================================== */
+
+    .cta-final{
+      background:
+      linear-gradient(
+      145deg,
+      #111111,
+      #1f1f1f
+      );
+
+      border-radius:30px;
+      margin:20px;
+      padding:40px 24px;
+      text-align:center;
+    }
+
+    .cta-final h2{
+      font-family:'Poppins',sans-serif;
+      font-size:32px;
+      line-height:1.3;
+      margin-bottom:14px;
+    }
+
+    .cta-final p{
+      color:#d0d0d0;
+      line-height:1.8;
+      margin-bottom:28px;
+    }
+
+    /* ==========================================
+       FOOTER
+    ========================================== */
+
+    footer{
+      padding:30px 20px 110px;
+      text-align:center;
+      color:#999;
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    /* ==========================================
+       STICKY WA
+    ========================================== */
+
+    .sticky-wa{
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 40px);
+      max-width:390px;
+
+      z-index:999;
+    }
+
+    .sticky-wa a{
+      height:58px;
+      background:var(--green);
+      border-radius:22px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      gap:10px;
+
+      color:white;
+      font-weight:700;
+
+      box-shadow:
+      0 10px 25px rgba(37,211,102,.35);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- =======================================
+       HERO
+  ======================================== -->
+
+  <section class="hero">
+
+    <div class="navbar">
+      <div class="logo">JogjaTrip</div>
+
+      <div class="menu-btn">
+        <span>☰</span>
+      </div>
+    </div>
+
+    <img src="images/hero/hero-main.jpg" alt="Hero jogja">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        ⭐ Trusted Transport Wisata Jogja
+      </div>
+
+      <h1 class="hero-title">
+        Liburan Jogja <br>
+        Lebih Nyaman & Private
+      </h1>
+
+      <p class="hero-desc">
+        Sewa Hiace, Innova, dan paket wisata Jogja
+        dengan driver profesional dan pelayanan ramah.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">
+          WhatsApp
+        </a>
+
+        <a href="#paket" class="btn btn-secondary">
+          Paket Trip
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =======================================
+       TRUST
+  ======================================== -->
+
+  <section>
+
+    <h2 class="section-title">
+      Kenapa Pilih Kami
+    </h2>
+
+    <p class="section-sub">
+      Fokus pada kenyamanan perjalanan dan pengalaman wisata yang aman.
+    </p>
+
+    <div class="trust-wrapper">
+
+      <div class="trust-card">
+        <div class="trust-icon">🚘</div>
+        <h3>Unit Bersih</h3>
+        <p>Armada rutin dibersihkan dan siap perjalanan jauh.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">👨‍✈️</div>
+        <h3>Driver Profesional</h3>
+        <p>Berpengalaman wisata Jogja dan luar kota.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">⚡</div>
+        <h3>Fast Response</h3>
+        <p>Booking dan konsultasi trip lebih cepat.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">💰</div>
+        <h3>Harga Transparan</h3>
+        <p>Tidak ada biaya tersembunyi di akhir perjalanan.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       ARMADA
+  ======================================== -->
+
+  <section>
+
+    <h2 class="section-title">
+      Armada Pilihan
+    </h2>
+
+    <p class="section-sub">
+      Pilihan kendaraan nyaman untuk keluarga maupun rombongan.
+    </p>
+
+    <div class="armada-scroll">
+
+      <div class="armada-card">
+
+        <div class="armada-image">
+          <img src="images/armada/hiace.jpg" alt="">
+        </div>
+
+        <div class="armada-content">
+
+          <h3>Hiace Premio</h3>
+
+          <div class="armada-info">
+            <div class="info-chip">14 Seat</div>
+            <div class="info-chip">Full AC</div>
+            <div class="info-chip">Bagasi Luas</div>
+          </div>
+
+          <div class="price">
+            Mulai 1.2jt
+          </div>
+
+          <a href="#" class="btn btn-primary">
+            Booking Sekarang
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       PAKET
+  ======================================== -->
+
+  <section id="paket">
+
+    <h2 class="section-title">
+      Paket Wisata
+    </h2>
+
+    <p class="section-sub">
+      Paket private trip favorit wisatawan saat liburan di Jogja.
+    </p>
+
+    <div class="package-wrapper">
+
+      <div class="package-card">
+
+        <div class="package-image">
+          <img src="images/paket/pantai.jpg" alt="">
+        </div>
+
+        <div class="package-content">
+
+          <h3>Pantai Selatan</h3>
+
+          <p>
+            Explore pantai indah Gunungkidul dengan perjalanan nyaman dan private.
+          </p>
+
+          <a href="#" class="btn btn-primary">
+            Lihat Detail
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       GALLERY
+  ======================================== -->
+
+  <section>
+
+    <h2 class="section-title">
+      Gallery Trip
+    </h2>
+
+    <p class="section-sub">
+      Beberapa momen perjalanan customer selama trip di Jogja.
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item big">
+        <img src="images/gallery/1.jpg" alt="">
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/gallery/2.jpg" alt="">
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/gallery/3.jpg" alt="">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       TESTIMONIAL
+  ======================================== -->
+
+  <section>
+
+    <h2 class="section-title">
+      Kata Customer
+    </h2>
+
+    <p class="section-sub">
+      Pengalaman wisata nyaman bersama JogjaTrip.
+    </p>
+
+    <div class="testimonial-scroll">
+
+      <div class="testimonial-card">
+
+        <h4>Rina - Jakarta</h4>
+
+        <p>
+          Driver ramah, mobil bersih, dan perjalanan sangat nyaman.
+          Recommended untuk family trip Jogja.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       FAQ
+  ======================================== -->
+
+  <section>
+
+    <h2 class="section-title">
+      FAQ
+    </h2>
+
+    <p class="section-sub">
+      Pertanyaan yang sering ditanyakan customer.
+    </p>
+
+    <div class="faq-wrapper">
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Harga sudah termasuk BBM?
+        </div>
+
+        <div class="faq-answer">
+          Ya, harga sudah termasuk driver dan BBM area Jogja.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =======================================
+       CTA FINAL
+  ======================================== -->
+
+  <div class="cta-final">
+
+    <h2>
+      Siap Keliling Jogja?
+    </h2>
+
+    <p>
+      Konsultasikan perjalanan dan itinerary wisata Anda sekarang juga.
+    </p>
+
+    <a href="#" class="btn btn-primary">
+      Chat WhatsApp
+    </a>
+
+  </div>
+
+  <!-- =======================================
+       FOOTER
+  ======================================== -->
+
+  <footer>
+    © 2026 JogjaTrip Transport Wisata <br>
+    Private Trip • Rental Mobil • Tour Jogja
+  </footer>
+
+</div>
+
+<!-- =======================================
+     STICKY WA
+======================================== -->
+
+<div class="sticky-wa">
+  <a href="#">
+    💬 Booking via WhatsApp
+  </a>
+</div>
+
+<script>
+
+  // =========================================
+  // SIMPLE FAQ TOGGLE
+  // =========================================
+
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+
+    item.addEventListener('click', () => {
+
+      item.classList.toggle('active');
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
